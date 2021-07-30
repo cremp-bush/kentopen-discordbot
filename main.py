@@ -17,7 +17,7 @@ async def on_ready():
     if settings['logs'] == True:
         embed = discord.Embed(title = 'Бот запущен!')
         embed.set_footer(text = datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
-        await bot.get_channel(settings[logs_channel_id]).send(embed = embed)
+        await bot.get_channel(settings['logs_channel_id']).send(embed = embed)
 
 
 #Логи
@@ -33,13 +33,13 @@ async def on_message(message):
             if settings['logs'] == True:
                 embed = discord.Embed(title = f'{nickname} в [#{message.channel}] :', description = f'"{message.content}"')
                 embed.set_footer(text = datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
-                await bot.get_channel(settings[logs_channel_id]).send(embed = embed)
+                await bot.get_channel(settings['logs_channel_id']).send(embed = embed)
         else:
             print(f'[COMMAND] <<{datetime.now().strftime("%Y/%m/%d %H:%M:%S")}>> {nickname} in [#{message.channel}] :\n {message.content} ')
             if settings['logs'] == True:
                 embed = discord.Embed(title = f'{nickname} в [#{message.channel}] :', description = f'"{message.content}"')
                 embed.set_footer(text = datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
-                await bot.get_channel(settings[logs_channel_id]).send(embed = embed)
+                await bot.get_channel(settings['logs_channel_id']).send(embed = embed)
     await bot.process_commands(message)
 
 
@@ -77,7 +77,7 @@ async def stop(ctx):
     if settings['logs'] == True:
         embed = discord.Embed(title = 'Отключение бота...')
         embed.set_footer(text = datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
-        await bot.get_channel(settings[logs_channel_id]).send(embed = embed)
+        await bot.get_channel(settings['logs_channel_id']).send(embed = embed)
     if settings['delete_commands'] == True:
         await ctx.channel.purge(limit = 1)
     exit()
@@ -91,7 +91,7 @@ async def update(ctx):
     if settings['logs'] == True:
         embed = discord.Embed(title = 'Рестарт бота...')
         embed.set_footer(text = datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
-        await bot.get_channel(settings[logs_channel_id]).send(embed = embed)
+        await bot.get_channel(settings['logs_channel_id']).send(embed = embed)
     if settings['delete_commands'] == True:
         await ctx.channel.purge(limit = 1)
     os.execv(sys.executable, ['python'] + sys.argv)
